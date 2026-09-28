@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { Plus, Pencil, Trash2, FolderKanban, ExternalLink, Upload, X, Star, Code2 } from 'lucide-react'
+import { Plus, Pencil, FolderKanban, ExternalLink, Upload, X, Star, Code2 } from 'lucide-react'
 import { projectApi, mediaApi } from '@/services/api'
 import type { Project, ProjectCreate, MediaObject } from '@/types'
 import { Button } from '@/components/ui/button'
@@ -329,26 +329,32 @@ export default function ProjectsPage() {
                   </div>
                 </div>
                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon-sm" className="shrink-0">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
+                  <DropdownMenuTrigger
+                    render={
+                      <Button variant="ghost" size="icon-sm" className="shrink-0">
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                    }
+                  />
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem onClick={() => openEdit(item)}>Edit</DropdownMenuItem>
                     {item.github_url && (
-                      <DropdownMenuItem asChild>
-                        <a href={item.github_url} target="_blank" rel="noopener noreferrer">
-                          <Code2 className="mr-2 h-4 w-4" /> GitHub
-                        </a>
-                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        render={
+                          <a href={item.github_url} target="_blank" rel="noopener noreferrer">
+                            <Code2 className="mr-2 h-4 w-4" /> GitHub
+                          </a>
+                        }
+                      />
                     )}
                     {item.live_url && (
-                      <DropdownMenuItem asChild>
-                        <a href={item.live_url} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
-                        </a>
-                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        render={
+                          <a href={item.live_url} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
+                          </a>
+                        }
+                      />
                     )}
                     <DropdownMenuItem className="text-destructive" onClick={() => openDelete(item)}>
                       Delete

@@ -1,5 +1,5 @@
 export type { MediaObject, MessageResponse, PaginatedResponse, ApiError } from './api'
-export type { AdminLogin, AdminToken, AdminResponse } from './auth'
+export type { AdminLogin, AdminToken, AdminResponse, AdminCreate } from './auth'
 export type { Profile, ProfileUpdate } from './profile'
 export type { Experience, ExperienceCreate, ExperienceUpdate } from './experience'
 export type { Education, EducationCreate, EducationUpdate } from './education'

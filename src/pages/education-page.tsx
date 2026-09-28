@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Plus, Pencil, Trash2, GraduationCap } from 'lucide-react'
+import { Plus, Pencil, GraduationCap } from 'lucide-react'
 import { educationApi } from '@/services/api'
 import type { Education, EducationCreate } from '@/types'
 import { Button } from '@/components/ui/button'
@@ -218,11 +218,13 @@ export default function EducationPage() {
                   )}
                 </div>
                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon-sm" className="shrink-0">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
+                  <DropdownMenuTrigger
+                    render={
+                      <Button variant="ghost" size="icon-sm" className="shrink-0">
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                    }
+                  />
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem onClick={() => openEdit(item)}>Edit</DropdownMenuItem>
                     <DropdownMenuItem className="text-destructive" onClick={() => openDelete(item)}>

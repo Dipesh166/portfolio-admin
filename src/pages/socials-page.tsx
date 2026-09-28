@@ -245,11 +245,13 @@ export default function SocialsPage() {
                 onCheckedChange={() => toggleEnabled(item)}
               />
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon-sm" className="shrink-0">
-                    <Pencil className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
+                <DropdownMenuTrigger
+                  render={
+                    <Button variant="ghost" size="icon-sm" className="shrink-0">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  }
+                />
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => openEdit(item)}>Edit</DropdownMenuItem>
                   <DropdownMenuItem className="text-destructive" onClick={() => openDelete(item)}>Delete</DropdownMenuItem>

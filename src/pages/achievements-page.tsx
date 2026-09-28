@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Plus, Pencil, Trash2, Trophy } from 'lucide-react'
+import { Plus, Pencil, Trophy } from 'lucide-react'
 import { achievementApi } from '@/services/api'
 import type { Achievement, AchievementCreate } from '@/types'
 import { Button } from '@/components/ui/button'
@@ -192,11 +192,13 @@ export default function AchievementsPage() {
                 </div>
               </div>
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon-sm" className="shrink-0">
-                    <Pencil className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
+                <DropdownMenuTrigger
+                  render={
+                    <Button variant="ghost" size="icon-sm" className="shrink-0">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  }
+                />
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => openEdit(item)}>Edit</DropdownMenuItem>
                   <DropdownMenuItem className="text-destructive" onClick={() => openDelete(item)}>Delete</DropdownMenuItem>

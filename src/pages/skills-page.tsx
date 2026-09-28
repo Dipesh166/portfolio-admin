@@ -256,11 +256,13 @@ export default function SkillsPage() {
                             </td>
                             <td className="px-4 py-3">
                               <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                  <Button variant="ghost" size="icon-sm">
-                                    <Pencil className="h-4 w-4" />
-                                  </Button>
-                                </DropdownMenuTrigger>
+                                <DropdownMenuTrigger
+                                  render={
+                                    <Button variant="ghost" size="icon-sm">
+                                      <Pencil className="h-4 w-4" />
+                                    </Button>
+                                  }
+                                />
                                 <DropdownMenuContent align="end">
                                   <DropdownMenuItem onClick={() => openEdit(skill)}>Edit</DropdownMenuItem>
                                   <DropdownMenuItem className="text-destructive" onClick={() => openDelete(skill)}>
@@ -311,11 +313,13 @@ export default function SkillsPage() {
                         </div>
                       </div>
                       <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon-sm">
-                            <Pencil className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
+                        <DropdownMenuTrigger
+                          render={
+                            <Button variant="ghost" size="icon-sm">
+                              <Pencil className="h-4 w-4" />
+                            </Button>
+                          }
+                        />
                         <DropdownMenuContent align="end">
                           <DropdownMenuItem onClick={() => openEdit(skill)}>Edit</DropdownMenuItem>
                           <DropdownMenuItem className="text-destructive" onClick={() => openDelete(skill)}>

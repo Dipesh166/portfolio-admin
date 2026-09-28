@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Save, Settings as SettingsIcon } from 'lucide-react'
 import { settingsApi } from '@/services/api'
-import type { SiteSettings, SiteSettingsUpdate } from '@/types'
+import type { SiteSettingsUpdate } from '@/types'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -13,7 +13,6 @@ import PageHeader from '@/components/shared/page-header'
 import LoadingSpinner from '@/components/shared/loading-spinner'
 
 export default function SettingsPage() {
-  const [settings, setSettings] = useState<SiteSettings | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
   const [error, setError] = useState('')
@@ -32,7 +31,6 @@ export default function SettingsPage() {
   const fetchSettings = useCallback(async () => {
     try {
       const data = await settingsApi.get()
-      setSettings(data)
       setSiteName(data.site_name)
       setSiteTagline(data.site_tagline)
       setFooterText(data.footer_text)
@@ -74,8 +72,7 @@ export default function SettingsPage() {
     }
 
     try {
-      const updated = await settingsApi.update(payload)
-      setSettings(updated)
+      await settingsApi.update(payload)
       setSuccess('Settings saved successfully')
       setTimeout(() => setSuccess(''), 3000)
     } catch (err: unknown) {

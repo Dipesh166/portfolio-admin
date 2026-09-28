@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { Plus, Pencil, Trash2, Award, Upload, X, ExternalLink } from 'lucide-react'
+import { Plus, Pencil, Award, Upload, X, ExternalLink } from 'lucide-react'
 import { certificationApi, mediaApi } from '@/services/api'
 import type { Certification, CertificationCreate, MediaObject } from '@/types'
 import { Button } from '@/components/ui/button'
@@ -248,11 +248,13 @@ export default function CertificationsPage() {
                 )}
               </div>
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon-sm" className="shrink-0">
-                    <Pencil className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
+                <DropdownMenuTrigger
+                  render={
+                    <Button variant="ghost" size="icon-sm" className="shrink-0">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  }
+                />
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => openEdit(item)}>Edit</DropdownMenuItem>
                   <DropdownMenuItem className="text-destructive" onClick={() => openDelete(item)}>Delete</DropdownMenuItem>

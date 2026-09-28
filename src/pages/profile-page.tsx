@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { Save, Upload, X, User, FileText } from 'lucide-react'
 import { profileApi, mediaApi } from '@/services/api'
-import type { Profile, ProfileUpdate, MediaObject } from '@/types'
+import type { ProfileUpdate, MediaObject } from '@/types'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -12,7 +12,6 @@ import PageHeader from '@/components/shared/page-header'
 import LoadingSpinner from '@/components/shared/loading-spinner'
 
 export default function ProfilePage() {
-  const [profile, setProfile] = useState<Profile | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
@@ -36,7 +35,6 @@ export default function ProfilePage() {
   const fetchProfile = useCallback(async () => {
     try {
       const data = await profileApi.get()
-      setProfile(data)
       setFormData({
         name: data.name,
         headline: data.headline,
@@ -128,8 +126,7 @@ export default function ProfilePage() {
     setIsSaving(true)
 
     try {
-      const updated = await profileApi.update(formData)
-      setProfile(updated)
+      await profileApi.update(formData)
       setSuccess('Profile saved successfully')
       setTimeout(() => setSuccess(''), 3000)
     } catch (err: unknown) {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Plus, Pencil, Trash2, Briefcase, X } from 'lucide-react'
+import { Plus, Pencil, Briefcase, X } from 'lucide-react'
 import { experienceApi } from '@/services/api'
 import type { Experience, ExperienceCreate } from '@/types'
 import { Button } from '@/components/ui/button'
@@ -277,11 +277,13 @@ export default function ExperiencePage() {
                   )}
                 </div>
                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon-sm" className="shrink-0">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
+                  <DropdownMenuTrigger
+                    render={
+                      <Button variant="ghost" size="icon-sm" className="shrink-0">
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                    }
+                  />
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem onClick={() => openEdit(item)}>Edit</DropdownMenuItem>
                     <DropdownMenuItem className="text-destructive" onClick={() => openDelete(item)}>

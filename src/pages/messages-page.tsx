@@ -1,10 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Trash2, MessageSquare, Mail, MailOpen, Search } from 'lucide-react'
+import { Trash2, MessageSquare, Mail, MailOpen } from 'lucide-react'
 import { messageApi } from '@/services/api'
 import type { ContactMessage } from '@/types'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Input } from '@/components/ui/input'
 import {
   Dialog,
   DialogContent,
