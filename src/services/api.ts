@@ -37,10 +37,20 @@ import type {
   MediaObject,
 } from '@/types'
 
-const API_BASE_URL = import.meta.env.API_URL 
+const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '')
+
+if (!API_BASE_URL) {
+  console.error(
+    '[api] VITE_API_URL is not defined, so requests fall back to same-origin /api/v1. ' +
+      'Set VITE_API_URL in .env (the VITE_ prefix is required for Vite to expose it) ' +
+      'and in your host environment variables.'
+  )
+}
+
+const API_PREFIX = `${API_BASE_URL}/api/v1`
 
 const api = axios.create({
-  baseURL: `${API_BASE_URL}/api/v1`,
+  baseURL: API_PREFIX,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -207,7 +217,7 @@ export const mediaApi = {
   },
   delete: (fileId: string) =>
     api.delete<MessageResponse>(`/media/${fileId}`).then((r) => r.data),
-  getUrl: (fileId: string) => `${API_BASE_URL}/api/v1/media/${fileId}`,
+  getUrl: (fileId: string) => `${API_PREFIX}/media/${fileId}`,
 }
 
 export default api
